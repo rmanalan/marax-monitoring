@@ -31,10 +31,10 @@ git clone git@github.com:rmanalan/raspi-thermocouple-monitor.git
 cd raspi-thermocouple-monitor
 ```
 
-Once you've done that, just simple run it:
+Once you've done that, just simply run it:
 
 ```
-sudo docker-compose up
+sudo docker-compose up -d
 ```
 
 Then point your browser to: http://<YOUR_PI_IP>:3000. This will open Grafana. The username and password are `admin/admin`.
