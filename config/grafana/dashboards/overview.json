@@ -59,7 +59,7 @@
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
-        "h": 18,
+        "h": 12,
         "w": 17,
         "x": 0,
         "y": 0
@@ -197,7 +197,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 6,
         "w": 7,
         "x": 17,
         "y": 0
@@ -282,10 +282,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 6,
         "w": 7,
         "x": 17,
-        "y": 8
+        "y": 6
       },
       "id": 5,
       "options": {
