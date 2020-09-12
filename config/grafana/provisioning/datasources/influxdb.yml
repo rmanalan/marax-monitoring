@@ -3,5 +3,5 @@ apiVersion: 1
 datasources:
   - name: InfluxDB
     type: influxdb
-    database: marax
+    database: thermo
     url: http://influxdb:8086

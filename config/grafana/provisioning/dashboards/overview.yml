@@ -6,7 +6,7 @@ providers:
     # <int> Org id. Default to 1
     orgId: 1
     # <string> name of the dashboard folder.
-    folder: 'Mara X'
+    folder: 'Thermo'
     # <string> provider type. Default to 'file'
     type: file
     # <bool> disable dashboard deletion

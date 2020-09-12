@@ -1,21 +1,30 @@
 version: "3"
 
 services:
-  marax-adapter:
-    build: ./containers/marax-adapter
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
+  # portainer:
+  #   image: portainer/portainer
+  #   command: -H unix:///var/run/docker.sock
+  #   restart: always
+  #   ports:
+  #     - 9000:9000
+  #     - 8000:8000
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - portainer_data:/data
+  thermo-adapter:
+    build: ./containers/thermo-adapter
     volumes:
-      - marax-storage:/var/log/marax
+      - thermo-storage:/var/log/thermo
+      - /sys/bus/w1/devices/:/sys/bus/w1/devices/
   telegraf:
     # Pin to 1.14 - tailing log file doesn't work on 1.15
     image: telegraf:1.14
     depends_on:
       - influxdb
-      - marax-adapter
+      - thermo-adapter
     volumes:
       - ./config/telegraf.conf:/etc/telegraf/telegraf.conf
-      - marax-storage:/var/log/marax
+      - thermo-storage:/var/log/thermo
   influxdb:
     image: influxdb
     ports:
@@ -36,8 +45,10 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_DASHBOARDS_MIN_REFRESH_INTERVAL=1s
 
 volumes:
   grafana-storage:
   influxdb-storage:
-  marax-storage:
+  thermo-storage:
+  portainer_data:
