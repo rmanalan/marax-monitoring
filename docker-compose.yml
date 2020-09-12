@@ -1,22 +1,14 @@
 version: "3"
 
 services:
-  # portainer:
-  #   image: portainer/portainer
-  #   command: -H unix:///var/run/docker.sock
-  #   restart: always
-  #   ports:
-  #     - 9000:9000
-  #     - 8000:8000
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock
-  #     - portainer_data:/data
   thermo-adapter:
+    restart: always
     build: ./containers/thermo-adapter
     volumes:
       - thermo-storage:/var/log/thermo
       - /sys/bus/w1/devices/:/sys/bus/w1/devices/
   telegraf:
+    restart: always
     # Pin to 1.14 - tailing log file doesn't work on 1.15
     image: telegraf:1.14
     depends_on:
@@ -26,6 +18,7 @@ services:
       - ./config/telegraf.conf:/etc/telegraf/telegraf.conf
       - thermo-storage:/var/log/thermo
   influxdb:
+    restart: always
     image: influxdb
     ports:
       - 8086:8086
@@ -33,6 +26,7 @@ services:
       - influxdb-storage:/var/lib/influxdb
       - ./config/influxdb:/docker-entrypoint-initdb.d
   grafana:
+    restart: always
     image: grafana/grafana
     ports:
       - 3000:3000
@@ -52,3 +46,4 @@ volumes:
   influxdb-storage:
   thermo-storage:
   portainer_data:
+
