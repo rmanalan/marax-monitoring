@@ -1,5 +1,8 @@
 FROM python:3-alpine
 
+COPY ./logtruncate /etc/periodic/daily/logtruncate
+RUN chmod +x /etc/periodic/daily/logtruncate
+
 COPY ./thermo.py .
 
 RUN mkdir /var/log/thermo
