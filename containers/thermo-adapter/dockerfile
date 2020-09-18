@@ -7,4 +7,4 @@ COPY ./thermo.py .
 
 RUN mkdir /var/log/thermo
 
-CMD ["/bin/sh", "-c", "while true; do python thermo.py; sleep .25; done"]
+CMD ["/bin/sh", "-c", "crond -b -l 8 && while true; do python thermo.py; sleep .25; done"]
